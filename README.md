@@ -14,19 +14,13 @@ public class CA1MATEUSVELOSO3 {
             PrintWriter printWriter = new PrintWriter(fileWriter);
 
             while (true) {
-                System.out.println("Enter the first name, second name, number of classes, and student number (or type 'exit' to end): ");
+                System.out.println("Enter first and second name, number of classes, and student number: ");
                 
-                String firstName = scanner.nextLine();
-                
-                if (firstName.equalsIgnoreCase("exit")) {
-                    break;
-                }
-
-                String secondName = scanner.nextLine();
+                String firstandSecondName = scanner.nextLine();
                 int numClasses = Integer.parseInt(scanner.nextLine());
                 String studentNumber = scanner.nextLine();
 
-                if (isValidData(firstName, secondName, numClasses, studentNumber)) {
+                if (isValidData(firstandSecondName, numClasses, studentNumber)) {
                 
                     String workload = determineWorkload(numClasses);
 
