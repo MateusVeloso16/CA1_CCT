@@ -42,7 +42,7 @@ public class CA1MATEUSVELOSO3 {
         }
 
 
-  /** private static String determineWorkload(int numClasses) {
+   private static String determineWorkload(int numClasses) {
         if (numClasses == 1) {
             return "Very Light";
         } else if (numClasses == 2) {
@@ -52,4 +52,4 @@ public class CA1MATEUSVELOSO3 {
         } else {
             return "Full Time";
         }
-    }*/
+    }
