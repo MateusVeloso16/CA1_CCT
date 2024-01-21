@@ -40,3 +40,16 @@ public class CA1MATEUSVELOSO3 {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+
+
+  /** private static String determineWorkload(int numClasses) {
+        if (numClasses == 1) {
+            return "Very Light";
+        } else if (numClasses == 2) {
+            return "Light";
+        } else if (numClasses >= 3 && numClasses <= 5) {
+            return "Part Time";
+        } else {
+            return "Full Time";
+        }
+    }*/
