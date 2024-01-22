@@ -1,48 +1,39 @@
 package ca1mateusveloso3;
 
 import java.util.Scanner;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 
 public class CA1MATEUSVELOSO3 {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        try {
-            FileWriter fileWriter = new FileWriter("status.txt");
-            PrintWriter printWriter = new PrintWriter(fileWriter);
-
-            while (true) {
-                System.out.println("Enter first and second name, number of classes, and student number: ");
-                
-                String firstandSecondName = scanner.nextLine();
-                int numClasses = Integer.parseInt(scanner.nextLine());
-                String studentNumber = scanner.nextLine();
-
-                if (isValidData(firstandSecondName, numClasses, studentNumber)) {
-                
-                    String workload = determineWorkload(numClasses);
-
-                    // Saving to the file status.txt
-                    printWriter.println(studentNumber + " – " + secondName.split(" ")[1]);
-                    printWriter.println(workload);
-                    printWriter.println();
-                } else {
-                    System.out.println("Error: Invalid data. Please enter valid information.");
-                }
+        
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("Enter first and second name: ");
+            String firstSecondName = scanner.nextLine();
+            if (!firstSecondName.matches("[a-zA-Z0-9 ]+")){
+                System.out.println("You informed an invalid name. Please try again! ");
             }
-
-            scanner.close();
-            printWriter.close();
-            fileWriter.close();
-
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Enter number of classes: ");
+            int numClasses = Integer.parseInt(scanner.nextLine());
+            if (!(numClasses >= 1 && numClasses <= 8)) {
+                System.out.println("You informed an invalid number of classes. Please try again! ");
+            }
+            System.out.println("Enter student number: ");
+            String studentNumber = scanner.nextLine();
+            if (!studentNumber.matches("[a-zA-Z0-9 ]+")) {
+                System.out.println("You informed an invalid student number. Please try again: ");
+            }
+            // Close resources
         }
+    }
 
+    
+        
+/**
 
-   private static String determineWorkload(int numClasses) {
+ -- I still have to work in this part--
+
+ 
+    private static String (int numClasses) {
         if (numClasses == 1) {
             return "Very Light";
         } else if (numClasses == 2) {
@@ -52,4 +43,5 @@ public class CA1MATEUSVELOSO3 {
         } else {
             return "Full Time";
         }
-    }
+    } */
+}
