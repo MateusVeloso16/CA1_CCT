@@ -11,14 +11,29 @@ public class CA1MATEUSVELOSO3 {
         String studentNumber;
         String firstSecondName;
         String workLoad = null;
+        String firstName;
+        String lastName;
+        
         
         
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("Enter first and second name: ");
             firstSecondName = scanner.nextLine();
-            if (!firstSecondName.matches("[a-zA-Z0-9 ]+")){
+            String[] names = firstSecondName.split("\\s+");
+                if (names.length >= 2){
+                
+                firstName = names[0];
+                lastName = names[1];
+                
+                if (!firstName.matches("[a-zA-Z]+")){
                 System.out.println("You informed an invalid name. Please try again! ");
-            }
+                }
+                if (!lastName.matches("[a-zA-Z0-9 ]+")){
+                System.out.println("You informed an invalid surname. Please try again! ");
+                }
+                    
+                }
+           
             System.out.println("Enter number of classes: ");
             numClasses = Integer.parseInt(scanner.nextLine());
             if (!(numClasses >= 1 && numClasses <= 8)) {
@@ -45,10 +60,8 @@ public class CA1MATEUSVELOSO3 {
             System.out.println("The number of classes should be between 1 and 8. Please try again! ");
             }
             
-            System.out.println(workLoad);
-            System.out.println(studentNumber);
-            System.out.println(numClasses);
-            System.out.println(firstSecondName);
+            
+            System.out.print(studentNumber + " - " + firstSecondName + "\n" + workLoad + "\n"); 
             
             scanner.close();
             
@@ -60,5 +73,3 @@ public class CA1MATEUSVELOSO3 {
     }        
             
 }
-   
-   
