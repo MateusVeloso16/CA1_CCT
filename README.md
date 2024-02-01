@@ -1,52 +1,43 @@
-import java.util.Scanner;
+package ca1mateusveloso5;
 
-public class CA1Assignment4 {
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class CA1mateusVeloso {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        
+        int numClasses;
+        String studentNumber;
+        String workLoad = null;
+        String firstSecondName;
 
-        boolean validInput = false;
+        try (BufferedReader reader = new BufferedReader(new FileReader("students.txt"))) {
 
-        do {
-            int numClasses;
-            String studentNumber;
-            String firstSecondName;
-            String workLoad;
-            String firstName;
-            String lastName;
-
-            System.out.println("Enter first and second name: ");
-            firstSecondName = scanner.nextLine();
+            firstSecondName = reader.readLine();
             String[] names = firstSecondName.split("\\s+");
             if (names.length >= 2) {
-                firstName = names[0];
-                lastName = names[1];
+                String firstName = names[0];
+                String lastName = names[1];
 
-                if (!firstName.matches("[a-zA-Z]+") || !lastName.matches("[a-zA-Z0-9 ]+")) {
-                    System.out.println("You informed an invalid name. Please try again! ");
-                    continue;
+                if (!(firstName.matches("[a-zA-Z]+") && lastName.matches("[a-zA-Z0-9 ]+"))) {
+                    System.out.println("Invalid input for first and second name. Please provide both first and second names again!.");
+                    return;
                 }
+            } else {
+                System.out.println("Invalid input for first and second name. Please provide both first and second names again!.");
+                return;
             }
-
+            
             System.out.println("Enter number of classes: ");
-            try {
-                numClasses = Integer.parseInt(scanner.nextLine());
-                if (!(numClasses >= 1 && numClasses <= 8)) {
-                    System.out.println("You informed an invalid number of classes. Please try again! ");
-                    continue;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input for number of classes. Please enter a valid number.");
-                continue;
+            numClasses = Integer.parseInt(reader.readLine());
+            if (!(numClasses >= 1 && numClasses <= 8)) {
+                System.out.println("The number of classes should be between 1 and 8. Please try again! ");
+                return;
             }
 
-            System.out.println("Enter student number: ");
-            studentNumber = scanner.nextLine();
-            if (!studentNumber.matches("[a-zA-Z0-9 ]+")) {
-                System.out.println("You informed an invalid student number. Please try again: ");
-                continue;
-            }
-
+            
             if (numClasses == 1) {
                 workLoad = "Very Light";
             } else if (numClasses == 2) {
@@ -55,16 +46,20 @@ public class CA1Assignment4 {
                 workLoad = "Part Time";
             } else if (numClasses > 5 && numClasses <= 8) {
                 workLoad = "Full Time";
-            } else {
-                System.out.println("The number of classes should be between 1 and 8. Please try again! ");
-                continue;
+            }
+
+            
+            System.out.println("Enter student number: ");
+            studentNumber = reader.readLine();
+            if (!studentNumber.matches("[a-zA-Z0-9 ]+")) {
+                System.out.println("You informed an invalid input. Please try again!");
+                return;
             }
 
             System.out.print(studentNumber + " - " + firstSecondName + "\n" + workLoad + "\n");
-            validInput = true;
 
-        } while (!validInput);
-
-        scanner.close();
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Error reading file or invalid input. Please check the file format and try again.");
+        }
     }
 }
