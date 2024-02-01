@@ -1,5 +1,6 @@
 package ca1mateusveloso5;
 
+import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,26 +13,26 @@ public class CA1mateusVeloso {
         String studentNumber;
         String workLoad = null;
         String firstSecondName;
+        String lastName = null;
+        String firstName;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("students.txt"))) {
+        try (BufferedReader reader  = new BufferedReader(new FileReader("students.txt"))) {
 
             firstSecondName = reader.readLine();
             String[] names = firstSecondName.split("\\s+");
             if (names.length >= 2) {
-                String firstName = names[0];
-                String lastName = names[1];
+                firstName = names[0];
+                lastName = names[1];
+                  
 
                 if (!(firstName.matches("[a-zA-Z]+") && lastName.matches("[a-zA-Z0-9 ]+"))) {
                     System.out.println("Invalid input for first and second name. Please provide both first and second names again!.");
                     return;
                 }
-            } else {
-                System.out.println("Invalid input for first and second name. Please provide both first and second names again!.");
-                return;
-            }
+            } 
             
-            System.out.println("Enter number of classes: ");
-            numClasses = Integer.parseInt(reader.readLine());
+            System.out.print("Enter number of classes: ");
+                numClasses = Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine());
             if (!(numClasses >= 1 && numClasses <= 8)) {
                 System.out.println("The number of classes should be between 1 and 8. Please try again! ");
                 return;
@@ -56,7 +57,7 @@ public class CA1mateusVeloso {
                 return;
             }
 
-            System.out.print(studentNumber + " - " + firstSecondName + "\n" + workLoad + "\n");
+            System.out.println(studentNumber + " - " + lastName + "\n" + workLoad + "\n");
 
         } catch (IOException | NumberFormatException e) {
             System.out.println("Error reading file or invalid input. Please check the file format and try again.");
