@@ -11,16 +11,18 @@ public class CA1mateusVeloso {
 
     public static void main(String[] args) {
 
-        int numClasses;
+        int numClasses = 0;
         String studentNumber;
         String workLoad = null;
         String firstSecondName;
         String lastName = null;
-        String firstName;
+        String firstName = null;
 
         try (BufferedReader reader = new BufferedReader(new FileReader("students.txt"))) {
 
-            firstSecondName = reader.readLine();  
+            // Read the first line
+            firstSecondName = reader.readLine();
+            System.out.println("Full name is: " + firstSecondName);
             String[] names = firstSecondName.split("\\s+");
             if (names.length >= 2) {
                 firstName = names[0];
@@ -31,10 +33,10 @@ public class CA1mateusVeloso {
                     return;
                 }
             }
-            
-            
-            
-            numClasses = Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine());            
+
+            // Read the second line
+            numClasses = Integer.parseInt(reader.readLine());
+            System.out.println("Number of classes is: " + numClasses);
             if (!(numClasses >= 1 && numClasses <= 8)) {
                 System.out.println("The number of classes should be between 1 and 8. Please try again! ");
                 return;
@@ -49,15 +51,18 @@ public class CA1mateusVeloso {
             } else if (numClasses > 5 && numClasses <= 8) {
                 workLoad = "Full Time";
             }
-            
-            
-            
+
+            // Read the third line
             studentNumber = reader.readLine();
+            System.out.println("Student number is: " + studentNumber);
             if (!studentNumber.matches("[a-zA-Z0-9 ]+")) {
                 System.out.println("You informed an invalid student number. Please try again!");
                 return;
             }
 
+            System.out.println();
+            System.out.print(studentNumber + " - " + firstSecondName + "\n" + workLoad + "\n");
+            
             try (PrintWriter writer = new PrintWriter(new FileWriter("status.txt", false))) {
                 writer.println(studentNumber + " - " + lastName);
                 writer.println(workLoad);
